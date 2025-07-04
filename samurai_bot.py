@@ -23,8 +23,8 @@ from barcode.writer import ImageWriter
 logging.basicConfig(level=logging.INFO)
 
 API_TOKEN = '7738742994:AAF2IcZJRjBzd1KnfpDpxeF1tyf-bNq7jkA'
-OWNER_ID = 958096246
-ADMINS = {958096246}
+OWNER_ID = 958096246, 688755430
+ADMINS = {958096246, 688755430}
 
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
@@ -466,7 +466,7 @@ async def choose_location(message: Message):
                 url="https://maps.app.goo.gl/GFwkJ58peZTDzRgV8")]
     ])
     await message.answer(
-        "Оберіть одну з наших точок, щоб подивитись на мапі:",
+        "Оберіть Samurai, який хочете знайти на мапі:",
         reply_markup=kb)
 
 @dp.message(F.text == "📞 Замовити")
@@ -476,7 +476,7 @@ async def choose_order_point(message: types.Message, state: FSMContext):
         [types.InlineKeyboardButton(text="📍 Київська 102", callback_data="choose_branch_kyivska")],
         #[types.InlineKeyboardButton(text="⬅️ Назад до меню", callback_data="back_to_menu")]
     ])
-    await message.answer("Оберіть точку, з якої хочете зробити замовлення:", reply_markup=kb)
+    await message.answer("Оберіть Samurai, в якому хочете зробити замовлення:", reply_markup=kb)
     await state.set_state(Order.choosing_branch)
 
 @dp.callback_query(F.data == "choose_branch_vokzalna")
