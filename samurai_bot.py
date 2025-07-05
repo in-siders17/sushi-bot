@@ -532,16 +532,17 @@ async def catch_feedback(message: Message):
         name = user_data.get("name", "—")
         phone = user_data.get("phone", "—")
 
-        await bot.send_message(
-            OWNER_ID,
-            f"📩 <b>Новий відгук</b>\n"
-            f"👤 <b>Ім’я:</b> {name}\n"
-            f"📱 <b>Телефон:</b> +{phone}\n"
-            f"💬 @{message.from_user.username or 'без username'}\n"
-            f"🆔 <code>{message.from_user.id}</code>\n\n"
-            f"<b>✉️ Відгук:</b>\n{message.text}",
-            parse_mode=ParseMode.HTML
-        )
+        for admin_id in OWNER_ID:
+            await bot.send_message(
+                OWNER_ID,
+                f"📩 <b>Новий відгук</b>\n"
+                f"👤 <b>Ім’я:</b> {name}\n"
+                f"📱 <b>Телефон:</b> +{phone}\n"
+                f"💬 @{message.from_user.username or 'без username'}\n"
+                f"🆔 <code>{message.from_user.id}</code>\n\n"
+                f"<b>✉️ Відгук:</b>\n{message.text}",
+                parse_mode=ParseMode.HTML
+            )
         await message.answer("✅ Дякуємо! Ваш відгук надіслано адміністрації.")
 
 #-----------------------------------------------------------
