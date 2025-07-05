@@ -516,7 +516,7 @@ async def back_to_order_points(callback: types.CallbackQuery, state: FSMContext)
 @dp.message(F.text == "💌 Відгук і Пропозиція")
 async def feedback_handler(message: Message):
     user_feedback_waiting.add(message.from_user.id)
-    await message.answer("✍️ Напишіть ваш відгук або подяку. Ми обов'язково це врахуємо!")
+    await message.answer("✍️ Напишіть ваш відгук або пропозицію. Ми обов'язково це врахуємо!")
 
 @dp.message(F.text)
 async def catch_feedback(message: Message):
