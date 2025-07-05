@@ -518,7 +518,7 @@ async def feedback_handler(message: Message):
     user_feedback_waiting.add(message.from_user.id)
     await message.answer("✍️ Напишіть ваш відгук або подяку. Ми обов'язково це врахуємо!")
 
-@dp.message()
+@dp.message(F.text)
 async def catch_feedback(message: Message):
     if message.from_user.id in user_feedback_waiting:
         user_feedback_waiting.remove(message.from_user.id)
@@ -534,7 +534,7 @@ async def catch_feedback(message: Message):
 
         for admin_id in OWNER_ID:
             await bot.send_message(
-                OWNER_ID,
+                admin_kb,
                 f"📩 <b>Новий відгук</b>\n"
                 f"👤 <b>Ім’я:</b> {name}\n"
                 f"📱 <b>Телефон:</b> +{phone}\n"
