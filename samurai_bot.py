@@ -508,7 +508,7 @@ async def back_to_order_points(callback: types.CallbackQuery, state: FSMContext)
         [InlineKeyboardButton(text="📍 Вокзальна 26Б", callback_data="choose_branch_vokzalna")],
         [InlineKeyboardButton(text="📍 Київська 102", callback_data="choose_branch_kyivska")]
     ])
-    await callback.message.edit_text("Оберіть точку, з якої хочете зробити замовлення:", reply_markup=kb)
+    await callback.message.edit_text("Оберіть Samurai, в якому хочете зробити замовлення:", reply_markup=kb)
     await state.set_state(Order.choosing_branch)
     await callback.answer()
 
