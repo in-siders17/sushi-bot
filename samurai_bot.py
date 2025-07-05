@@ -23,8 +23,8 @@ from barcode.writer import ImageWriter
 logging.basicConfig(level=logging.INFO)
 
 API_TOKEN = '7738742994:AAF2IcZJRjBzd1KnfpDpxeF1tyf-bNq7jkA'
-OWNER_ID = {958096246, 688755430}
-ADMINS = {958096246, 688755430}
+OWNER_ID = [958096246, 688755430]
+ADMINS = [958096246, 688755430]
 
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
@@ -129,14 +129,15 @@ async def handle_name(message: Message, state: FSMContext):
         "phone": data["phone"]
     }
 
-    await bot.send_message(
-        OWNER_ID,
-        f"🚨 <b>НОВИЙ КЛІЄНТ</b> 🚨\n"
-        f"👤 Ім’я: <b>{name}</b>\n"
-        f"📱 Телефон: +<b>{data['phone']}</b>\n"
-        f"🆔 Telegram ID: <code>{telegram_id}</code>\n"
-        f"💬 @{message.from_user.username or 'немає username'}\n\n"
-    )
+    for admin_id in OWNER_ID:
+        await bot.send_message(
+            admin_id,
+            f"🚨 <b>НОВИЙ КЛІЄНТ</b> 🚨\n"
+            f"👤 Ім’я: <b>{name}</b>\n"
+            f"📱 Телефон: +<b>{data['phone']}</b>\n"
+            f"🆔 Telegram ID: <code>{telegram_id}</code>\n"
+            f"💬 @{message.from_user.username or 'немає username'}\n\n"
+        )
 
     kb = get_admin_keyboard() if telegram_id in ADMINS else get_user_keyboard()
     await message.answer("✅ Ви зареєстровані!", reply_markup=kb)
