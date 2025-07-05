@@ -534,7 +534,7 @@ async def catch_feedback(message: Message):
 
         for admin_id in OWNER_ID:
             await bot.send_message(
-                admin_kb,
+                admin_id,
                 f"📩 <b>Новий відгук</b>\n"
                 f"👤 <b>Ім’я:</b> {name}\n"
                 f"📱 <b>Телефон:</b> +{phone}\n"
