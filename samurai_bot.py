@@ -23,7 +23,7 @@ from barcode.writer import ImageWriter
 logging.basicConfig(level=logging.INFO)
 
 API_TOKEN = '7738742994:AAF2IcZJRjBzd1KnfpDpxeF1tyf-bNq7jkA'
-OWNER_ID = 958096246, 688755430
+OWNER_ID = {958096246, 688755430}
 ADMINS = {958096246, 688755430}
 
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
